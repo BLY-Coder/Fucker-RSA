@@ -46,9 +46,7 @@ def hack():
 		id_rsa = sys.argv[1]
 		wordlist = sys.argv[2]
 
-		#print (id_rsa + ' ' + wordlist)
-
-		global test
+		logo()
 
 		f = open(wordlist,"r")
 		progreso=log.progress("Aplicando fuerza bruta\n")
@@ -58,9 +56,9 @@ def hack():
 
 			for word in f:
 
-				test= (comando + ' -y -f ' + id_rsa + ' -P ' + word + '>/dev/null 2>&1')
-				e=test.replace("\n"," ")
-				resultado = os.system(e)
+				ssh= (comando + ' -y -f ' + id_rsa + ' -P ' + word + '>/dev/null 2>&1')
+				cmd=ssh.replace("\n"," ")
+				resultado = os.system(cmd)
 				#print(resultado)
 				progreso.status("Intentando -> "+ word)
 
@@ -81,6 +79,4 @@ def hack():
 		uso()
 
 if __name__ == '__main__':
-
-	logo()
 	hack()
